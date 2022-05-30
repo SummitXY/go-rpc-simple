@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 # https://docs.docker.com/language/golang/build-images/
 FROM golang:1.15-alpine
 

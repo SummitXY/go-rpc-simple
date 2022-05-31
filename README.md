@@ -22,3 +22,8 @@ docker push qxybest/go-rpc-simple:latest
  docker run -p 9001:9001 qxybest/go-rpc-simple
 ```
 > 其中port1:port2, port1是指外部访问的端口， port2是指这个rpc服务listen的端口
+
+## apply k8s service
+```shell
+kubectl apply -f go-rpc-simple.yaml
+```

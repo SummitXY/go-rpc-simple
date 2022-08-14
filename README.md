@@ -27,3 +27,8 @@ docker push qxybest/go-rpc-simple:latest
 ```shell
 kubectl apply -f go-rpc-simple.yaml
 ```
+
+## 获取该rpc service的对外ip:port
+```shell
+minikube service go-rpc-simple-service --url 
+```

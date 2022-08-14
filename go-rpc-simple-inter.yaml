@@ -1,0 +1,40 @@
+apiVersion: apps/v1  # API版本
+kind: Deployment  # API对象类型
+metadata:
+  name: go-rpc-simple
+  labels:
+    app: go-rpc-simple
+spec:
+  selector:
+    matchLabels:
+      app: go-rpc-simple
+  replicas: 3  # Pod 副本数量
+  template:  # Pod 模板
+    metadata:
+      labels:
+        app: go-rpc-simple
+    spec:
+      containers:
+        - name: go-rpc-simple
+          image: qxybest/go-rpc-simple:latest
+          imagePullPolicy: IfNotPresent # Always
+          ports:
+            - containerPort: 9001
+          # env:
+          # - name: REDIS_URL
+          #   value: redis.default.svc.cluster.local:6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-rpc-simple-service
+  labels:
+    app: go-rpc-simple
+spec:
+  selector:
+    app: go-rpc-simple
+  ports:
+    - protocol: TCP
+      port: 9009       # k8s集群内部暴露的service端口，k8s集群外无法通过这个port访问这个service
+      targetPort: 9001 # 要打到的container的端口，就上面Deployment的containerPort
+      #nodePort: 30002  # 对k8s集群外暴露的端口，外部的TCP请求访问这个端口

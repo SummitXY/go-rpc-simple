@@ -17,7 +17,7 @@ spec:
       containers:
         - name: go-rpc-simple
           image: qxybest/go-rpc-simple:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent # Always
           ports:
             - containerPort: 9001
           # env:

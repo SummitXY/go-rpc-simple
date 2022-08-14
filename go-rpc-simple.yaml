@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: go-rpc-simple
-  replicas: 2  # Pod 副本数量
+  replicas: 3  # Pod 副本数量
   template:  # Pod 模板
     metadata:
       labels:
@@ -36,6 +36,6 @@ spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 9001       # k8s集群内部暴露的service端口，k8s集群外无法访问这个service
+      port: 9001       # k8s集群内部暴露的service端口，k8s集群外无法通过这个port访问这个service
       targetPort: 9001 # 要打到的container的端口，就上面Deployment的containerPort
       nodePort: 30002  # 对k8s集群外暴露的端口，外部的TCP请求访问这个端口

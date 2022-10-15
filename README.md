@@ -25,7 +25,10 @@ docker push qxybest/go-rpc-simple:latest
 
 ## apply k8s service
 ```shell
+// 这个是暴露集群外的端口
 kubectl apply -f go-rpc-simple.yaml
+// 只暴露对集群内的端口运行这个
+kubectl apply -f go-rpc-simple-inter.yaml
 ```
 
 ## 获取该rpc service的对外ip:port
